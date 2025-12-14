@@ -2,62 +2,86 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para ti 🌹</title>
+<title>Para ti 🌻</title>
 
 <style>
   body {
     margin: 0;
-    background: linear-gradient(135deg, #ffe6eb, #fff);
+    background: linear-gradient(135deg, #fff7cc, #ffffff);
     overflow: hidden;
     text-align: center;
-    font-family: 'Segoe Script', 'Comic Sans MS', cursive;
+    font-family: Georgia, "Times New Roman", serif;
   }
 
   h1 {
-    margin-top: 20px;
-    color: #c2185b;
+    margin-top: 30px;
+    color: #b8860b;
+    font-size: 26px;
+    padding: 0 20px;
+  }
+
+  p {
+    color: #6b4e00;
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .flor {
+    position: absolute;
+    font-size: 120px;
+    animation: crecer 0.6s ease-out;
+  }
+
+  @keyframes crecer {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
 </style>
 </head>
 
 <body>
 
-<h1>Toca la pantalla 💖</h1>
+<h1>
+  Cuando sientas que no puedes florecer,<br>
+  ve estas flores 🌻
+</h1>
+<p>Toca la pantalla</p>
+
+<!-- Música: A veces - TIMØ -->
+<iframe
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/8w0iZxqzq4k?autoplay=1&loop=1&playlist=8w0iZxqzq4k"
+  frameborder="0"
+  allow="autoplay">
+</iframe>
 
 <script>
-let florActual = null;
-
-function mostrarFlor(x, y) {
-  if (florActual) {
-    florActual.remove();
-  }
-
+function crearFlor(x, y) {
   const flor = document.createElement("div");
-  flor.innerText = "🌹";
-  flor.style.position = "absolute";
-  flor.style.fontSize = "180px";
-  flor.style.left = (x - 90) + "px";
-  flor.style.top = (y - 90) + "px";
-  flor.style.transition = "transform 0.5s";
-  flor.style.transform = "scale(0)";
+  flor.className = "flor";
+  flor.innerText = "🌻";
+
+  // Posición aleatoria cerca del toque
+  const offsetX = Math.random() * 200 - 100;
+  const offsetY = Math.random() * 200 - 100;
+
+  flor.style.left = (x + offsetX) + "px";
+  flor.style.top = (y + offsetY) + "px";
 
   document.body.appendChild(flor);
-  florActual = flor;
-
-  setTimeout(() => {
-    flor.style.transform = "scale(1)";
-  }, 50);
 }
 
 document.addEventListener("click", (e) => {
-  mostrarFlor(e.clientX, e.clientY);
+  crearFlor(e.clientX, e.clientY);
 });
 
 document.addEventListener("touchstart", (e) => {
-  mostrarFlor(e.touches[0].clientX, e.touches[0].clientY);
+  crearFlor(e.touches[0].clientX, e.touches[0].clientY);
 });
 </script>
 
 </body>
 </html>
+
 
