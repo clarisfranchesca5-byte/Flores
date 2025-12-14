@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 🌻 </title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    overflow: hidden;
+    font-family: Arial;
+    text-align: center;
+  }
+  h1 {
+    margin-top: 20px;
+    color: #d63384;
+  }
+  .flor {
+    position: absolute;
+    font-size: 40px;
+    animation: aparecer 1s ease-out;
+  }
+  @keyframes aparecer {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Toca la pantalla 💖</h1>
+
+<script>
+function crearFlor(x, y) {
+  const flor = document.createElement("div");
+  flor.className = "flor";
+  flor.innerText = "🌻";
+  flor.style.left = x + "px";
+  flor.style.top = y + "px";
+  document.body.appendChild(flor);
+}
+
+document.addEventListener("click", (e) => {
+  crearFlor(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchstart", (e) => {
+  crearFlor(e.touches[0].clientX, e.touches[0].clientY);
+});
+</script>
+
+</body>
+</html>
