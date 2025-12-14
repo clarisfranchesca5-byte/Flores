@@ -2,52 +2,62 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para ti 🌻 </title>
+<title>Para ti 🌹</title>
+
 <style>
   body {
     margin: 0;
-    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    background: linear-gradient(135deg, #ffe6eb, #fff);
     overflow: hidden;
-    font-family: Arial;
     text-align: center;
+    font-family: 'Segoe Script', 'Comic Sans MS', cursive;
   }
+
   h1 {
     margin-top: 20px;
-    color: #d63384;
-  }
-  .flor {
-    position: absolute;
-    font-size: 40px;
-    animation: aparecer 1s ease-out;
-  }
-  @keyframes aparecer {
-    from { transform: scale(0); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    color: #c2185b;
   }
 </style>
 </head>
+
 <body>
 
 <h1>Toca la pantalla 💖</h1>
 
 <script>
-function crearFlor(x, y) {
+let florActual = null;
+
+function mostrarFlor(x, y) {
+  if (florActual) {
+    florActual.remove();
+  }
+
   const flor = document.createElement("div");
-  flor.className = "flor";
-  flor.innerText = "🌻";
-  flor.style.left = x + "px";
-  flor.style.top = y + "px";
+  flor.innerText = "🌹";
+  flor.style.position = "absolute";
+  flor.style.fontSize = "180px";
+  flor.style.left = (x - 90) + "px";
+  flor.style.top = (y - 90) + "px";
+  flor.style.transition = "transform 0.5s";
+  flor.style.transform = "scale(0)";
+
   document.body.appendChild(flor);
+  florActual = flor;
+
+  setTimeout(() => {
+    flor.style.transform = "scale(1)";
+  }, 50);
 }
 
 document.addEventListener("click", (e) => {
-  crearFlor(e.clientX, e.clientY);
+  mostrarFlor(e.clientX, e.clientY);
 });
 
 document.addEventListener("touchstart", (e) => {
-  crearFlor(e.touches[0].clientX, e.touches[0].clientY);
+  mostrarFlor(e.touches[0].clientX, e.touches[0].clientY);
 });
 </script>
 
 </body>
 </html>
+
